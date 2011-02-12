@@ -46,6 +46,12 @@ class Event < ActiveRecord::Base
   def short_desc
     (self.description.length > 50) ? (self.description[0..49] + '...') : self.description
   end
+  def show_date
+    self.date.strftime("%d %b %Y")
+  end
+  def title_message
+    self.title + " on " + self.show_date
+  end
   def save
     begin
       super
@@ -62,7 +68,7 @@ class Event < ActiveRecord::Base
     return @event
   end
   def fixdatesfromdatepicker(date,end_date)
-    self.date=DateTime.strptime(date,"%d/%m/%Y") if self.date.nil?
-    self.end_date=DateTime.strptime(end_date,"%d/%m/%Y") if self.end_date.nil?
+     self.date=DateTime.strptime(date,"%d/%m/%Y") if (date.length == 10 || self.date.nil?)
+    self.end_date=DateTime.strptime(end_date,"%d/%m/%Y") if (end_date.length == 10 || self.end_date.nil?)
   end
 end

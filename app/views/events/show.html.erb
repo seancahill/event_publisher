@@ -123,7 +123,7 @@
 <div class="bigleft"><h2 >Events Details</h2></div>
 <div id="showevent" class ="fleft bigleft">
   
-  <span class="spancontent"><%= @event.title + " on: " + @event.date.strftime("%d %b %Y")%></span><br/>
+  <span class="spancontent"><%= @event.title_message %></span><br/>
   <span class ="spanlocation">Show event
   <%= link_to_function 'location', "locateBusiness(\'#{@event.location.location_name}\',\'#{@event.title}\',#{@event.location.geo_lat},#{@event.location.geo_long})" %>
   </span>

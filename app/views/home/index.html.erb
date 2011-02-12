@@ -37,7 +37,7 @@
 <% @events.each do |event| %>
   <tr>
     <td><%= event.title %></td>
-    <td><%= event.date.strftime("%a %b %d %Y") %></td>
+    <td><%= event.show_date %></td>
     <td><%= event.short_location %></td>
     <td><%= link_to 'Details', event  %></td>
   </tr>
@@ -51,7 +51,7 @@
   <h2>Featured Event</h2>
    <% if !@event.nil? %>
     <span class="spancontent"><%= @event.title %></span><br/>
-    <span class="spancontent">on:  <%=  @event.date.strftime("%d %b %Y")%></span><br/><br/>
+    <span class="spancontent">on:  <%=  @event.show_date%></span><br/><br/>
 
     @ <%= @event.short_location %>
 
