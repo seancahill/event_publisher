@@ -31,7 +31,7 @@ class OverlaysController < ApplicationController
     # 6371 is the radius of the earth in kms
 
     @distcalc = "( 6371 * ACOS( COS( RADIANS(#{@lat}) ) * COS( RADIANS( lat ) ) * COS( RADIANS( lon ) - RADIANS(#{@lon}) ) + SIN( RADIANS(#{@lat}) ) * SIN( RADIANS( lat ) ) ) ) "
-    @grouping = "GROUP BY id,lon,lat,name,amenity,operator,typeof"
+    @grouping = "GROUP BY id,ref_id,lon,lat,name,amenity,operator,typeof"
     @sql = "SELECT *," + @distcalc + " AS distance FROM overlays " + @grouping + " HAVING " + @distcalc + " < #{@distance} and typeof = '#{@typeof}' "
     begin
        @overlays = Overlay.find_by_sql(@sql)
