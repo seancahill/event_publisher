@@ -4,25 +4,26 @@
   <%= form_for @store, :as => :store, :url => view_events_path, :html => {:method => :post} do |f| %>
   <div class="field">
       <label>Select Category </label><br/>
-      <%=  collection_select( :store, :category, @categories, :id, :category_name, {:include_blank => 'Please Select' }) %>
+      <%=  select( :store, :category, @categories) %>
   </div>
   <div class="field ">
       <label>In The Next </label><br/>
       <%=  select(:store,:date,@dateselect) %>
   </div>
   <div class="actions">
-   <input id="event_submit" name="commit" type="submit" value="Select" />
+   <input id="event_submit" name="commit" type="submit" value="Show Events" />
 
   </div>
   <% end %>
 </div>
+<% if !@events.nil? %>
   <div class="fleft smallleft bigtop">
    <table>
    <tr>
     <th>Title</th>
     <th>Description</th>
     <th>Date</th>
-    <th>Location</th>  
+    <th>Location</th>
     <th></th>
   </tr>
 
@@ -30,11 +31,12 @@
   <tr>
     <td><%= event.title %></td>
     <td style="width: 350px;"><%= event.short_desc %></td>
-    <td><%= event.date.strftime("%m/%d/%Y") %></td>
+    <td><%= event.show_date %></td>
     <td><%= event.short_location %></td>
     <td><%= link_to 'Show', event %></td>
   </tr>
 <% end %>
-</table> 
+</table>
   </div>
+<% end %>
 <div class="clear"></div>
