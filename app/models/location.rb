@@ -12,5 +12,8 @@ class Location < ActiveRecord::Base
   has_many :events
   validates :location_name, :presence => true,
     :uniqueness => true
+  validates :geo_lat, :presence => true
+  validates :geo_long, :presence => true
+
 
 end

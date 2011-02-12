@@ -5,7 +5,7 @@
     var markerOptions =null;
     var eventlon = null;
     var eventlat = null;
-    var iconList = { eating: "yellow", convenience: "brown", pub: "green", transport: "gray", atm: "purple", supermarket: "white", bikerental: "blue"};
+    var iconList = { eating: "yellow", hotel: "orange",convenience: "brown", pub: "green", transport: "gray", atm: "purple", supermarket: "white", bikerental: "blue"};
 
     function initialize() {
       if (GBrowserIsCompatible()) {
@@ -42,7 +42,7 @@
         marker = new GMarker(point);
         map.addOverlay(marker);
         map.addControl(new GLargeMapControl());
-        map.setCenter(point, 17);
+        map.setCenter(point, 15);
         GEvent.addListener(marker, "click", function() {
           marker.openInfoWindowHtml(address + '<br>' +
           '<b>Event:</b> ' + title);
@@ -121,33 +121,35 @@
 <% end  %>
 <div class="clear"></div>
 <div class="bigleft"><h2 >Events Details</h2></div>
-<div id="showevent"class ="fleft bigleft">
+<div id="showevent" class ="fleft bigleft">
   
-  <span id="spancontent"><%= @event.title + " on: " + @event.date.strftime("%m/%d/%Y")%></span><br/><br/>
-  Show event
+  <span class="spancontent"><%= @event.title + " on: " + @event.date.strftime("%d %b %Y")%></span><br/>
+  <span class ="spanlocation">Show event
   <%= link_to_function 'location', "locateBusiness(\'#{@event.location.location_name}\',\'#{@event.title}\',#{@event.location.geo_lat},#{@event.location.geo_long})" %>
-
-  <br/><br/>
-  Description<br/>
-  <%= @event.description %><br/><br/>
+  </span>
+  <br/>
+  <span class="spancontent">Description</span>
+  <p class="smallerpara">
+  [<%= @event.description %>]<br/></p><br/>
   This is a <%= @event.cost %> event organized by<br/>
   <%= @event.organizer.organization %><br/><br/>
-  Contact event organizer by
+  Contact organizer by
   <a href="mailto:<%= @event.organizer.email %>"> email</a><br/><br/>
-  More details at <%= link_to @event.event_url, @event.event_url, :remote => true %><br/>
+  More details at <%= link_to  "Event URL",@event.event_url, :remote => true, :class => :smallerpara %><br/>
 </div>
 
 <div class="fleft">
- <div id="map_canvas" style="margin-left: 20px; width: 500px; height: 300px; float: left;"></div>
+ <div id="map_canvas" style="margin-left: 20px; width: 500px; height: 400px; float: left;"></div>
 
  <div id="rightbaroverlay" class="fleft"
  <div id="overlaydistance" class=" padleft">
-   Facilities Within  <br />
-  500<%=  radio_button_tag("overlay", "distance", "no",:checked => true, :value => 0.5) %>
-  100<%=  radio_button_tag("overlay", "distance", "yes", :value => 0.1) %>(mtrs)
+   Facilities Within  <br />  
+  100<%=  radio_button_tag("overlay", "0.1") %>
+  500<%=  radio_button_tag("overlay", "0.5",:checked => true) %>(mtrs)
  </div>
  <div id="overlays" >
   <button  id="overlay">eating</button><img class="icons" src ="/images/mm_20_yellow.png" alt=" map icon"/>
+  <button  id="overlay">hotel</button><img class="icons" src ="/images/mm_20_orange.png" alt=" map icon"/>
   <button  id="overlay">transport</button><img class="icons" src ="/images/mm_20_gray.png" alt=" map icon"/>
   <button  id="overlay">atm</button><img class="icons" src ="/images/mm_20_purple.png" alt=" map icon"/>
   <button  id="overlay">convenience</button><img class="icons" src ="/images/mm_20_brown.png" alt=" map icon"/>

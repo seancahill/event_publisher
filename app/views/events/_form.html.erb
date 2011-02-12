@@ -1,13 +1,12 @@
-
 <link rel="stylesheet" href="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/themes/base/jquery-ui.css" type="text/css" media="all" />
-<script src="http://ajax.googleapis.com/ajax/libs/jquery/1.4.4/jquery.min.js" type="text/javascript"></script>
-<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8.7/jquery-ui.min.js" type="text/javascript"></script>
+<script src="http://ajax.googleapis.com/ajax/libs/jqueryui/1.8/jquery-ui.min.js"></script>
 
+  
 <script  type="text/javascript">
         $(document).ready(function () {    
         $("#event_organizer_id").hide();      
-        $("#event_date").datepicker();
-        $("#event_end_date").datepicker();     
+        $("#event_date").datepicker({dateFormat: 'dd/mm/yy'});
+        $("#event_end_date").datepicker({dateFormat: 'dd/mm/yy'});
          $("#event_date").change( function(){
            var sdate = $("#event_date").val();
            $("#event_end_date").val(sdate);
@@ -35,21 +34,22 @@
   <%=  collection_select(:event, :location_id, @locations, :id, :location_name, {:include_blank => 'Please Select' }) %>
   
   </div>
-  <div class="field fleft">
-  <label>Select Category </label><br/>
-  <%=  collection_select(:event, :category_id, @categories, :id, :category_name, {:include_blank => 'Please Select' }) %>
-  </div>
+  
 <div class="clear"></div>
-  <div class="field">
+  <div class="field fleft">
     <%= f.label :title %><br />
     <%= f.text_field :title , :size => 50 %>
   </div>
+<div class="field fleft">
+  <label>Select Category </label><br/>
+  <%=  collection_select(:event, :category_id, @categories, :id, :category_name, {:include_blank => 'Please Select' }) %>
+  </div>
+ <div class='clear'></div>
   <div class="field">
     <%= f.label :description %><br />
     <%= f.text_area :description, :rows => 5 %>
   </div>
   
- <div class='clear'></div>
   <div class="field fleft">
     <%= f.label :date %><br />
     <%= f.text_field :date , :size => 10 %>

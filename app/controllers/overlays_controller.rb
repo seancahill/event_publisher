@@ -29,9 +29,15 @@ class OverlaysController < ApplicationController
     @lon = params[:lon]
     @lat = params[:lat]
     # 6371 is the radius of the earth in kms
-    @sql = "SELECT *, ( 6371 * ACOS( COS( RADIANS(#{@lat}) ) * COS( RADIANS( lat ) ) * COS( RADIANS( lon ) - RADIANS(#{@lon}) ) + SIN( RADIANS(#{@lat}) ) * SIN( RADIANS( lat ) ) ) ) AS distance FROM overlays HAVING distance < #{@distance} and typeof = '#{@typeof}' ORDER BY distance";
-   
-    @overlays = Overlay.find_by_sql(@sql)
+
+    @distcalc = "( 6371 * ACOS( COS( RADIANS(#{@lat}) ) * COS( RADIANS( lat ) ) * COS( RADIANS( lon ) - RADIANS(#{@lon}) ) + SIN( RADIANS(#{@lat}) ) * SIN( RADIANS( lat ) ) ) ) "
+    @grouping = "GROUP BY id,lon,lat,name,amenity,operator,typeof"
+    @sql = "SELECT *," + @distcalc + " AS distance FROM overlays " + @grouping + " HAVING " + @distcalc + " < #{@distance} and typeof = '#{@typeof}' "
+    begin
+       @overlays = Overlay.find_by_sql(@sql)
+    rescue => e
+      redirect_to(error_path, :notice => "Error: #{e.message}")
+    end
     # clean data 
     @overlays.each do
      |ol |

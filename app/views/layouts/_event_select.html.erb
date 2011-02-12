@@ -16,7 +16,7 @@
   </div>
   <% end %>
 </div>
-  <div class="fleft bigleft bigtop">
+  <div class="fleft smallleft bigtop">
    <table>
    <tr>
     <th>Title</th>
@@ -29,7 +29,7 @@
 <% @events.each do |event| %>
   <tr>
     <td><%= event.title %></td>
-    <td style="width: 350px;"><%= (event.description.length > 50) ? (event.description[0..49] + '...') : event.description %></td>
+    <td style="width: 350px;"><%= event.short_desc %></td>
     <td><%= event.date.strftime("%m/%d/%Y") %></td>
     <td><%= event.short_location %></td>
     <td><%= link_to 'Show', event %></td>

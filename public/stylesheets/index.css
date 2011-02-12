@@ -1,16 +1,29 @@
+* { margin: 0; padding: 0; }
 body { background-color:white; color: #333; text-align:center;}
 
 body{
-  font-family: georgia,verdana, arial, helvetica, sans-serif;
+  font-family: cambria,palatino,georgia,verdana, arial, helvetica, sans-serif;
   font-size:   62.5%;
   line-height: 1.4;
 }
 p,h1,h2,h3,a,span,td,th { font-size: 1.2em;}
-h1,h2,h3 { line-height: 1.2; }
-h2,h3 { margin:0px; margin-top: 6px; padding-bottom: 10px; color: darkorange;}
+h1,h2,h3 {  line-height: 1.4; }
+h2,h3 { font-size: 1.4em; margin:0px; padding-bottom: 4px; color: darkorange;}
 ul li a { text-decoration: none;}
 ul li { list-style-type: none;}
 
+@font-face {
+    font-family: 'AmadeusRegular';
+    src: url('../fonts/Amadeus/amadeus-webfont.eot?') format('eot'),
+         url('../fonts/Amadeus/amadeus-webfont.woff') format('woff'),
+         url('../fonts/Amadeus/amadeus-webfont.ttf') format('truetype'),
+         url('../fonts/Amadeus/amadeus-webfont.svg#webfontDCp00RGA') format('svg');
+    font-weight: normal;
+    font-style: normal;
+
+}
+
+input,select { padding: 3px;}
 a {
   color: #09c;
   text-decoration: none;
@@ -27,7 +40,6 @@ a:visited {
 
 .nav {
   float: left;
-  margin-left: 100px;
   margin-bottom:5px;
 }
 
@@ -55,7 +67,6 @@ a:visited {
 .nav ul li a {
   padding: 0px;
   margin: 0px; border: 0px;
-  font-weight: bold;
   padding: 4px 8px;
 
 }
@@ -63,9 +74,10 @@ a:visited {
 .nav ul li a:hover {
   text-decoration: underline;
 }
-div.topnav  { margin-left: 0px;}
+div.topnav  { margin-left: 0px; }
 .topnav ul { margin-left: 0px;}
 .topnav ul li {margin-left:10px; border: 0px; padding: 0px;}
+.topnav ul li a {font-size: 1em;}
 .nav ul li a.current { background-color: #f0f0f0;
                         color: black;
                         border-bottom: 1px solid #f0f0f0;
@@ -73,7 +85,7 @@ div.topnav  { margin-left: 0px;}
                         border-left: 1px solid black;
                         border-right: 1px solid black;}
 
-div.biggerfont { font-size: 1.4em}
+div.biggerfont { font-size: 1.2em}
 
 #container {
 	width:1150px;
@@ -81,6 +93,7 @@ div.biggerfont { font-size: 1.4em}
 	margin:0px auto;
 	text-align:left;
         padding: 7px;
+        font-size: 1.4em;
 	}
 .clearfix:after
 {
@@ -90,20 +103,16 @@ div.biggerfont { font-size: 1.4em}
     clear: both;
     visibility: hidden;
 }
-.bordertop { border-top: 5px solid grey; margin-top: 10px;text-align: left;
-  width: 900px;
-  margin-left: auto;
-  margin-right: auto;
-}
-div.boxxy { width: 560px; border: 1px solid green; padding: 6px; font-size: 1.0em; font-weight: bold; background-color:lightyellow;}
+.bordertop { border-top: 5px solid grey; margin-top: 10px; width: 1140px; }
+div.boxxy { width: 560px; border: 1px solid green; padding: 6px; background-color:lightyellow;margin-top: 30px;}
 .padleft { padding-left:10px;}
-h3 { margin-top:5px; margin-bottom:5px;}
 
-table { border-collapse:collapse; border: 1px solid darkorange}
+table { border-collapse:collapse;}
+div.borderstyle {border: 1px solid darkorange}
 table tbody tr:nth-child(odd)    { background-color:#eee; }
 table tbody tr:nth-child(even)    { background-color:#fff; }
 table th { background-color: darkorange; padding: 3px;}
-table td { padding: 3px;}
+table td { padding: 3px; font-size: 1.0em;}
 
 a.listings_button {
   margin-left: auto;
@@ -115,7 +124,7 @@ a.listings_button {
   background: #006400;
   font-size: 150%;
   font-weight: bold;
-  padding: 20px;
+  padding: 15px;
   -moz-border-radius: 15px;
   border-radius: 15px;
 }
@@ -130,8 +139,8 @@ p{
 }
 select:focus, textarea:focus, input:focus { border: 2px solid green}
 div.selectionbox { width: 180px; }
-div.bigtop { margin-top: 60px;}
-div.smalltop { margin-top: 20px;}
+div.bigtop { margin-top: 40px;}
+div.smalltop { margin-top: 10px;}
 div.locationtable { width: 500px;}
 div.helper { width: 240px; border: 1px solid black; padding: 6px; margin-left: 10px; background-color: white;}
 div.field, div.actions {
@@ -142,32 +151,37 @@ div.field, div.actions {
 .clear { clear: both}
 img.icons {  margin-top: 5px; padding-left: 5px;}
 
-span#spancontent { color: green;}
+span.spancontent { color: green;}
 button#removeoverlay { color: blue; margin-left:10px; width:100px;}
 button#overlay { width: 100px; margin-left:10px;}
-h1#titlehead {  width: 260px;
+h1#titlehead {  width: 280px;
                 margin: 0;
                 padding: 6px;
                 margin-left: 5px;
-                font-family: chiller,georgia,verdana,serif  ;
-                font-size: 3.6em;
-                background-color: #669966; 
+                font-family: 'AmadeusRegular',georgia,verdana,serif  ;
+                font-size: 3.2em;
+                background-color: #1a82f7;
+                background: -moz-linear-gradient(100% 100% 90deg, #2F2727, #1a82f7);
+                background: -webkit-gradient(linear, 0% 0%, 0% 100%, from(#1a82f7), to(#2F2727));
+
                 color:lightpink;
                 -moz-border-radius: 15px;
                 border-radius: 15px;}
 div#overlays { margin-top: 2px; width: 134px;}
-div.bigleft {margin-left:100px;}
+div.bigleft {margin-left: 70px;}
 div.tinyleft {margin-left:5px;}
-div#showevent {  border: 1px solid black; padding: 5px; background-color: white; width:280px;}
+div#showevent {  border: 1px solid black; padding: 5px; background-color: white; width:240px; font-size: 1.2em;}
 
 div.displayboxxy { margin-left: 5px; border: 1px solid black; padding: 5px; background-color: white; width:250px;}
 div.displayboxxy ul { margin: 0px; padding: 0px; padding-left:5px;}
-div.displayboxxy h2 { margin: 0px; padding: 5px; }
+
 
 div#maincontent{ padding:20px;}
 div.round { margin-top: 6px;}
 div.header { position: relative;}
 div#changeFont { position: absolute; right: 5px; bottom: 1px;}
+ul#twitter_update_list { font-size: 0.8em;}
+.smallerpara { font-size: 0.9em; line-height: 1.2; margin-bottom: 3px;}
 div#comments
 {
     border: 1px solid grey;

@@ -1,33 +1,7 @@
-<script src="http://maps.google.com/maps?file=api&amp;v=2.x&amp;key=ABQIAAAAzr2EBOXUKnm_jVnk0OJI7xSosDVG8KKPE1-m51RBrvYughuyMxQ-i1QfUnH94QxWIa6N4U6MouMmBA" type="text/javascript"></script>
 <script type="text/javascript">
-    var map = null;
-    var geocoder = null;
-
-
-    function initialize() {
-      if (GBrowserIsCompatible()) {
-        map = new GMap2(document.getElementById("map_canvas"));
-        map.setCenter(new GLatLng(53.348867,-6.243162), 13);
-        geocoder = new GClientGeocoder();
-      }
-    }
-     function locateBusiness(address,lat,longit) {
-        map.clearOverlays();
-
-        point = new GLatLng(lat,
-                            longit);
-        marker = new GMarker(point);
-        map.addOverlay(marker);
-        map.addControl(new GLargeMapControl());
-        map.setCenter(new GLatLng(lat,longit), 16);
-        marker.openInfoWindowHtml(address + '<br>' +
-          '<b>Country code:</b> ' + "other stuff");
-      }
-</script>
-<script  type="text/javascript">
-        $(document).ready(function () {
-        $("#event_details").hide();
-        });
+			$(document).ready(function() {
+				$('table').Scrollable(120, 538);
+			});
 </script>
 
   <div class="fleft smallleft boxxy">
@@ -39,29 +13,54 @@
         Twitter and email. Registration is required to begin entering your events.
          <%= link_to 'Registration', new_user_path  %> is simple and straightforward and you'll be
         up and running in no time.
-    </p>
+    </p> <br/>
     <p> Events can be searched for and viewed within the application. No registration
         is required to view events. Select the View Events button below to view upcoming
         events in Dublin.
     </p>
     <%= link_to "Event Search",select_events_path , :class => "listings_button" %>
   </div>
-
-  <div id="showevent"class ="fleft tinyleft">
-  <h3>Featured Event</h3>
+<div class="fleft tinyleft actions">
+<h3>Upcoming Events</h3>
+<div class="borderstyle"
+<table>
+  <thead>
+  <tr>
+    <th>Title</th>
+    <th>Date</th>
+    <th>Location</th>
+    <th></th>
+  </tr>
+  </thead>
+<% if !@events.nil? %>
+  <tbody>
+<% @events.each do |event| %>
+  <tr>
+    <td><%= event.title %></td>
+    <td><%= event.date.strftime("%a %b %d %Y") %></td>
+    <td><%= event.short_location %></td>
+    <td><%= link_to 'Details', event  %></td>
+  </tr>
+<% end %>
+  </tbody>
+  <% end %>
+</table>
+</div>
+</div>
+  <div id="showevent" class ="fleft tinyleft">
+  <h2>Featured Event</h2>
    <% if !@event.nil? %>
-    <span id="spancontent"><%= @event.title + " on: " + @event.date.strftime("%m/%d/%Y")%></span><br/><br/>
-    Taking Place at
+    <span class="spancontent"><%= @event.title %></span><br/>
+    <span class="spancontent">on:  <%=  @event.date.strftime("%d %b %Y")%></span><br/><br/>
 
-    <%= @event.short_location %>
+    @ <%= @event.short_location %>
 
     <br/><br/>
-    Description<br/>
-    <%= @event.description %><br/><br/>
+    
     This is a <%= @event.cost %> event organized by<br/>
     <%= @event.organizer.organization %><br/><br/>
   
-    More details at <%= link_to "Show Event",event_path(@event)  %><br/>
+     <%= link_to "more information >>",event_path(@event)  %><br/>
     <% else %>
     <p> There are no featured events at present. If you would like
       your event to appear on this home page please contact us.
@@ -71,40 +70,10 @@
 <div id="twitter_div" class="fleft displayboxxy">
 <h2 class="sidebar-title">Twitter Updates</h2>
 <ul id="twitter_update_list"></ul>
-<a href="http://twitter.com/seantwitter" id="twitter-link" style="display:block;text-align:right;">follow me on Twitter</a>
+<a href="http://twitter.com/seantwitter" id="twitter-link" style="display:block;text-align:right;">follow us on twitter</a>
 </div>
 <script type="text/javascript" src="http://twitter.com/javascripts/blogger.js"></script>
 <script type="text/javascript" src="http://twitter.com/statuses/user_timeline/seantwitter.json?callback=twitterCallback2&amp;count=5"></script>
+
+
 <div class="clear"></div>
-<div class="bordertop">
-<h3>Upcoming Events</h3>
-
-<table>
-  <tr>
-    <th>Title</th>
-    <th>Description</th>
-    <th>Date</th>
-    <th>Location</th>
-    
-    <th></th>
-
-  </tr>
-<% if !@events.nil? %>
-<% @events.each do |event| %>
-  <tr>
-    <td><%= event.title %></td>
-    <td style="width: 350px;"><%= (event.description.length > 50) ? (event.description[0..49] + '...') : event.description %></td>
-    <td><%= event.date.strftime("%m/%d/%Y") %></td>
-    <td><%= event.short_location %></td>
-    
-    <td><%= link_to 'Details', event  %></td>
-
-  </tr>
-<% end %>
-  <% end %>
-</table>
-
-</div>
-<div id="event_details"
-</div>
-

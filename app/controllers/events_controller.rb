@@ -10,6 +10,8 @@ class EventsController < ApplicationController
     @event = Event.new()
     @locations = Location.all
     @costs = ["Free","Paid"]
+    @hours = ["7","8","9","10","11","12","13","14","15","16","17","18","19","20"]
+    @mins = ["00","15","30","45"]
     @categories = Category.all
     @signed_in_user = current_user
     @organizer = Organizer.find_by_user(@signed_in_user.account)
@@ -25,6 +27,8 @@ class EventsController < ApplicationController
     
     @locations = Location.all
     @costs = ["Free","Paid"]
+    @hours = ["7","8","9","10","11","12","13","14","15","16","17","18","19","20"]
+    @mins = ["00","15","30","45"]
     @categories = Category.all
     
       respond_to do |format|
@@ -33,7 +37,7 @@ class EventsController < ApplicationController
           TwitterSend.new(@event) if @send_tweet == 'yes' ## maybe should be singleton ?? only if same handle
           @organizer.emails.each do
             | em |
-            UserMailer.event_email(@event,em.email).deliver
+            #UserMailer.event_email(@event,em.email).deliver
           end
           redirect_to(@event, :notice => 'Event was successfully created.') }
         format.xml  { render :xml => @event, :status => :created, :event => @event }
@@ -70,7 +74,7 @@ class EventsController < ApplicationController
 def selectevents
     @date = Date.today
     begin
-      @events = Event.find(:all, :conditions => "date >= '#{@date}'")
+      @events = Event.find(:all, :conditions => "date >= '#{@date}'" , :order => 'date' )
     rescue => e
       redirect_to(error_path, :notice => "Error: #{e.message}")
     end
@@ -96,7 +100,7 @@ def selectevents
 #    @selectDate = Date.today.to_time.advance( :months => 2) if params[:store][:date] =="2 Months"
 #    @selectDate = @selectDate.to_date
 #    @selectDate = @selectDate.strftime('%Y-%m-%d %H:%M:%S')
-    @events=Event.find(:all, :conditions => "date >= '#{@date}' and date <= '#{@selectDate}'")
+    @events=Event.find(:all, :conditions => "date >= '#{@date}' and date <= '#{@selectDate}'" , :order => 'date')
     @dateselect = ["Week","1 Month","2 Months"]
     @categories = Category.all
     @store = StoreSelection.instance
@@ -119,8 +123,8 @@ def selectevents
   def update
     @event = Event.find(params[:id])
 
-    params[:event][:date]=DateTime.strptime(params[:event][:date],"%m/%d/%Y") if params[:event][:date].length == 10
-    params[:event][:end_date]=DateTime.strptime(params[:event][:end_date],"%m/%d/%Y") if params[:event][:end_date].length == 10
+    params[:event][:date]=DateTime.strptime(params[:event][:date],"%d/%m/%Y") if params[:event][:date].length == 10
+    params[:event][:end_date]=DateTime.strptime(params[:event][:end_date],"%d/%m/%Y") if params[:event][:end_date].length == 10
 
     @organizer = Organizer.find(@event.organizer_id)
     @locations = Location.all

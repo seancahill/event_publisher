@@ -10,7 +10,6 @@
     <th>Description</th>
     <th>Date</th>
     <th>Location</th>
-    <th>Event Home</th>
     <th></th>
     <th></th>
     <th></th>
@@ -22,7 +21,6 @@
     <td style="width: 350px;"><%= (event.description.length > 50) ? (event.description[0..49] + '...') : event.description %></td>
     <td><%= event.date.strftime("%m/%d/%Y") %></td>
     <td><%= event.short_location %></td>
-    <td><%= link_to event.event_url, event.event_url, :remote => true %></td>
     <td><%= link_to 'Show', event %></td>
     <td><%= link_to 'Edit', edit_event_path(event) %></td>
     <td><%= link_to 'Destroy', event, :confirm => 'Are you sure?', :method => :delete %></td>
