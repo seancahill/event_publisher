@@ -44,12 +44,20 @@ class EventsController < ApplicationController
       respond_to do |format|
         if @event.save
          format.html {
-          TwitterSend.new(@event) if @send_tweet == 'yes' ## maybe should be singleton ?? only if same handle
-          @organizer.emails.each do
-            | em |
-            #UserMailer.event_email(@event,em.email).deliver
-          end
-          redirect_to(@event, :notice => 'Event was successfully created.') }
+           begin
+              addMess=""
+              TwitterSend.new(@event) if @send_tweet == 'yes' ## maybe should be singleton ?? only if same handle
+              @organizer.emails.each do
+                | em |
+                #UserMailer.event_email(@event,em.email).deliver
+              end
+           rescue Exception => e
+             addMess=e.message
+           ensure
+            redirect_to(@event, :notice => 'Event was successfully created. '+addMess)
+           end
+
+          }
         format.xml  { render :xml => @event, :status => :created, :event => @event }
       else
         format.html { render :action => "new" }

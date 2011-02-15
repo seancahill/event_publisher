@@ -7,7 +7,7 @@ class OrganizersController < ApplicationController
     @organizer = Organizer.new()
     @organizer.user = @signed_in_user.account
     @locations = Location.all
-    @organizer.twitter_handle = "businesseventsdublin"
+    @organizer.twitter_handle = "eventsindublin"
   end
 
   def create

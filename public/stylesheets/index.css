@@ -181,6 +181,7 @@ div.round { margin-top: 6px;}
 div.header { position: relative;}
 div#changeFont { position: absolute; right: 5px; bottom: 1px;}
 ul#twitter_update_list { font-size: 0.8em;}
+ul#twitter_update_list li span a { font-size: 0.8em;}
 .smallerpara { font-size: 0.9em; line-height: 1.2; margin-bottom: 3px;}
 div#comments
 {
