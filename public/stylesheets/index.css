@@ -104,7 +104,7 @@ div.biggerfont { font-size: 1.2em}
     visibility: hidden;
 }
 .bordertop { border-top: 5px solid grey; margin-top: 10px; width: 1140px; }
-div.boxxy { width: 560px; border: 1px solid green; padding: 6px; background-color:lightyellow;margin-top: 30px;}
+div.boxxy { border: 1px solid green; padding: 6px; background-color:lightyellow;margin-top: 30px;}
 .padleft { padding-left:10px;}
 
 table { border-collapse:collapse;}
@@ -175,7 +175,8 @@ div#showevent {  border: 1px solid black; padding: 5px; background-color: white;
 div.displayboxxy { margin-left: 5px; border: 1px solid black; padding: 5px; background-color: white; width:250px;}
 div.displayboxxy ul { margin: 0px; padding: 0px; padding-left:5px;}
 
-
+div.firstcol { width:45%}
+div.secondcol { width: 55%}
 div#maincontent{ padding:20px;}
 div.round { margin-top: 6px;}
 div.header { position: relative;}
