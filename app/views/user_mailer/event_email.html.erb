@@ -7,18 +7,17 @@
     <h1>New Event, <%= @event.title %></h1>
     <p>
       Dublin Event Publisher has published a new event you may be interested in. <br/>
-      This event is taking palace at <%= @event.short_location %> on <%= @event.show_date %>.
-      
+      This event is taking palace at <%= @event.short_location %> on <%= @event.show_date %>.      
     </p>
     <p>
-      For more details on this event, just follow link to <%= link_to "event home page", @event.event_url %>. <br/>
-      or contact the event organizer <%= @event.organizer.email %>.<br/>
+      For more details on this event, just follow link to <%= @event.event_url %>. <br/>
+      or contact the event organizer <%= @event.organizer.email %>.
     </p>
     <p>
-      This message was sent by the <a href="http://event-publisher.heroku.com">Dublin Event Publisher</a> website.
       Register your upcoming events with us for free publicity.
+      Find us at http://event-publisher.heroku.comDublin
     </p>
-    <p>Follow us on <a href="www.twitter.com/eventsindublin">twitter</a>
+    <p>Follow us on twitter at http://www.twitter.com/eventsindublin
     </p>
   </body>
 </html>
