@@ -92,7 +92,7 @@ class EventsController < ApplicationController
 def selectevents
     @date = Date.today
 
-    @dateselect = ["Week","1 Month","2 Months"]
+    @dateselect = ["Week","1 Month","2 Months","6 Months"]
 
     @store = StoreSelection.instance
 
@@ -112,6 +112,7 @@ def selectevents
     @selectDate = Date.today.to_time.advance( :weeks => 1) if params[:store][:date] =="Week"
     @selectDate = Date.today.to_time.advance( :months => 1) if params[:store][:date] =="1 Month"
     @selectDate = Date.today.to_time.advance( :months => 2) if params[:store][:date] =="2 Months"
+    @selectDate = Date.today.to_time.advance( :months => 6) if params[:store][:date] =="6 Months"
     @selectDate = @selectDate.to_date
     @selectDate = @selectDate.strftime('%Y-%m-%d %H:%M:%S')
     set_category_list
@@ -123,7 +124,7 @@ def selectevents
       @event_cat=Category.find_by_category_name(@selectcat)
       @events=Event.find(:all, :conditions => "date >= '#{@date}' and date <= '#{@selectDate}' and category_id = #{@event_cat.id}" , :order => 'date')
     end
-    @dateselect = ["Week","1 Month","2 Months"]
+    @dateselect = ["Week","1 Month","2 Months","6 Months"]
     @store = StoreSelection.instance
     @store.date = params[:store][:date]
     @store.category = @selectcat
