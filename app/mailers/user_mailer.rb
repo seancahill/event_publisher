@@ -10,7 +10,7 @@ class UserMailer < ActionMailer::Base
   def event_email(event,email)
     @event = event
     @url  = "http://event-publisher.heroku.com"
-    @eventdetails=@url+"/event/"+event.id
+    @eventdetails=@url+"/event/"+event.id.to_s
     mail( :from => event.organizer.email, :to => email,
          :subject => "New Dublin Event Notification")
   end
