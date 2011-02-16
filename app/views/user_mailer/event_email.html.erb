@@ -6,10 +6,13 @@
   <body>
     <h1>New Event, <%= @event.title %></h1>
     <p>
-      Has been announced, contact<%= @event.organizer.email %>.<br/>
+      Dublin Event Publisher has published a new event you may be interested in. <br/>
+      This event is taking palace at <%= @event.short_location %> on <%= @event.show_date %>
+      
     </p>
     <p>
-      For more details on this event, just follow this link: <%= @event.event_url %>.
+      For more details on this event, just follow this link: <%= @event.event_url %>. <br/>
+      or contact the organizer <%= @event.organizer.email %>.<br/>
     </p>
 
   </body>

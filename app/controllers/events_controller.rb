@@ -49,7 +49,7 @@ class EventsController < ApplicationController
               TwitterSend.new(@event) if @send_tweet == 'yes' ## maybe should be singleton ?? only if same handle
               @organizer.emails.each do
                 | em |
-                #UserMailer.event_email(@event,em.email).deliver
+                 UserMailer.event_email(@event,em.email).deliver
               end
            rescue Exception => e
              addMess=e.message

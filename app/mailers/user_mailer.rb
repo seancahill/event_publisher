@@ -1,14 +1,14 @@
 class UserMailer < ActionMailer::Base
-  default :from => "info@nmm.ie"
+  default :from => "eventsindublin@gmail.com"
   def welcome_email(user)
     @user = user
-    @url  = "http://jobinireland.com/"
+    @url  = "http://event-publisher.heroku.com"
     mail(:to => user.email,
-         :subject => "Welcome to My Awesome Site")
+         :subject => "Welcome to the Dublin Event Publisher Web Site")
   end
   def event_email(event,email)
     @event = event
-    @url  = "http://jobinireland.com/"
+    @url  = "http://event-publisher.heroku.com"
 
     mail( :from => event.organizer.email, :to => email,
          :subject => "New Event Notification")
